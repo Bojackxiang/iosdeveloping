@@ -1,25 +1,31 @@
-//
-//  ViewController.swift
-//  standford_ios-1
-//
-//  Created by Weijie Xiang on 27/7/18.
-//  Copyright © 2018 Weijie Xiang. All rights reserved.
-//
 
 import UIKit
 
 class ViewController: UIViewController {
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+    
+    // General Value
+    let constentList = ["😈", "😄", "😈", "😄"]
+    @IBOutlet var buttonCollection: [UIButton]!
+    var clickedTime: Int = 0{
+        didSet{
+            countLabel.text = "flips : \(clickedTime)"
+        }
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    
+    // General Functions
+    @IBAction func button(_ sender: UIButton) {
+        clickedTime+=1
+        if(sender.currentTitle != ""){
+            sender.setTitle("", for: UIControlState.normal)
+        }else{
+            clickedTime+=1
+            let index = buttonCollection.index(of: sender)
+            sender.setTitle(constentList[index!], for: UIControlState.normal)
+        }
     }
-
+    
+    @IBOutlet weak var countLabel: UILabel!
+    
 
 }
 
