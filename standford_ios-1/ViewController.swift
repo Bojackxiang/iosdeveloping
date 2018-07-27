@@ -15,12 +15,18 @@ class ViewController: UIViewController {
     // General Functions
     @IBAction func button(_ sender: UIButton) {
         clickedTime+=1
-        if(sender.currentTitle != ""){
-            sender.setTitle("", for: UIControlState.normal)
+        print(sender.currentTitle)
+        if(sender.currentTitle == "" || sender.currentTitle == nil){
+            if let index = buttonCollection.index(of: sender){
+                sender.setTitle(constentList[index], for: UIControlState.normal)
+            }else{
+                print("chosen card is not in the list")
+            }
+            
+            
         }else{
-            clickedTime+=1
-            let index = buttonCollection.index(of: sender)
-            sender.setTitle(constentList[index!], for: UIControlState.normal)
+            sender.setTitle("", for: UIControlState.normal);
+            
         }
     }
     
